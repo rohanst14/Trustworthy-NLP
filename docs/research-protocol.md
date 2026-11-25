@@ -1,0 +1,5 @@
+# Calibration study
+
+Use the official 20 Newsgroups train/test split. Remove headers, footers and quotations. Split official training data into fitting (70%), temperature fitting (15%) and threshold selection (15%), stratified by label. Fit TF-IDF only on fitting examples. Fit scalar temperature by minimizing multiclass negative log likelihood. Choose maximum coverage on the policy split subject to empirical risk <= 10%. If no threshold qualifies, abstain on all. Report test accuracy, NLL, multiclass Brier (sum over classes), 15-bin ECE and selective risk. Test curves are descriptive, not used for threshold tuning. Target risk is not guaranteed on test or shifted distributions.
+
+Source: https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html . Original posts have varying rights; download through scikit-learn, do not redistribute raw text. The original corpus is historical and may contain offensive material. TensorFlow training runs locally, without a paid API. Seed is fixed; hardware nondeterminism remains.

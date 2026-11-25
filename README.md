@@ -6,7 +6,19 @@
 
 A compact binary text classifier that exposes class probabilities and token-level log odds, and abstains when evidence is insufficient.
 
-## Design
+## Research extension: TensorFlow reliability evaluation
+
+Train a local TF-IDF neural classifier on 20 Newsgroups. Disjoint fitting, calibration and policy-selection splits prevent test leakage. The experiment measures expected calibration error, Brier score, negative log likelihood and risk–coverage tradeoffs.
+
+```bash
+pip install -e . -r requirements-research.txt
+python experiments/calibrate.py
+python -m unittest discover -s tests -v
+```
+
+See [protocol](docs/research-protocol.md) and [research workflow](.github/workflows/research.yml). Full benchmark execution is opt-in via Actions > Calibration validation > Run workflow. No empirical benchmark result is claimed until a run produces an artifact.
+
+## Design (original baseline)
 
 Labeled documents → Laplace-smoothed multinomial Naive Bayes → log-space posterior → confidence threshold → label or abstention. Unknown words are excluded; an input without known tokens abstains.
 
